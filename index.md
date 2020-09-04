@@ -50,7 +50,7 @@ sudo gedit mme.conf sgw.conf
 
 ### Configure MME
 
-```sh
+```yaml
 mme:
     freeDiameter: mme.conf
     s1ap:
@@ -76,7 +76,7 @@ mme:
 
 ### Configure SGW
 
-```sh
+```yaml
 pgw:
     freeDiameter: pgw.conf
     gtpc:
