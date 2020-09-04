@@ -102,6 +102,11 @@ Install oai-RAN on the physical machine, you can follow the instructions for the
 [oai-Ran-Installation-Configuration](https://angelo-ath.github.io/oai/#enb---installation---configuration)
 
 ## Configuration of oai-RAN
+```sh
+sudo gedit ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/enb.band7.tm1.50PRB.usrpb210.conf
+```
+
+Edit the following lines:
 
 ```yaml
 
@@ -161,4 +166,16 @@ sudo systemctl restart nextepc-mmed;sudo systemctl restart nextepc-pgwd;sudo sys
 ## Status of NextEPC
 ```sh
 clear ;sudo systemctl status nextepc-mmed ; sudo systemctl status nextepc-pgwd ; sudo systemctl status nextepc-sgwd ; sudo systemctl status nextepc-hssd ; sudo systemctl status nextepc-pcrfd
+```
+
+## Run NextEPC & OAI-RAN
+On the VM
+
+```sh
+sudo systemctl start nextepc-hssd ; sudo systemctl start nextepc-mmed ; sudo systemctl start nextepc-sgwd ; sudo systemctl start nextepc-pgwd ; sudo systemctl start nextepc-pcrfd
+```
+On the physical machine
+
+```sh
+clear ; sudo ~/openairinterface5g/cmake_targets/ran_build/build/lte-softmodem -O ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/enb.band7.tm1.50PRB.usrpb210.conf
 ```
