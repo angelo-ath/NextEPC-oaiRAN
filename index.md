@@ -1,3 +1,23 @@
+## Preliminaries
+
+We will install NextEPC on a [Ubuntu 18.04](https://releases.ubuntu.com/18.04.5/ubuntu-18.04.5-desktop-amd64.iso) virtual machine. We choose Virtual-Box 6.1
+
+```sh
+sudo apt-get install virtualbox-6.1
+```
+Install the ubuntu image, then go to Settings > Network > Adapter 1
+
+And change to Bridged Adapter and select your interface
+
+![alt text](https://raw.githubusercontent.com/angelo-ath/NextEPC-oaiRAN/gh-pages/screenshots/1.png)
+![alt text](https://raw.githubusercontent.com/angelo-ath/NextEPC-oaiRAN/gh-pages/screenshots/2.png)
+![alt text](https://raw.githubusercontent.com/angelo-ath/NextEPC-oaiRAN/gh-pages/screenshots/3.png)
+
+## Installation of NextEPC
+
+
+
+
 ## Installation of oai-RAN
 
 For the installation part go to this link
