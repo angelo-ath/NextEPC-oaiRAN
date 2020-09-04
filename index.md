@@ -1,37 +1,106 @@
-## Installation of oai-RAN
+## Preliminaries
 
-For the installation part go to this link
+We will install NextEPC on a [Ubuntu 18.04](https://releases.ubuntu.com/18.04.5/ubuntu-18.04.5-desktop-amd64.iso) virtual machine. We choose Virtual-Box 6.1
 
-https://angelo-ath.github.io/oai/#enb---installation---configuration
+```sh
+sudo apt-get install virtualbox-6.1
+```
+Install the ubuntu image, then go to Settings > Network > Adapter 1
 
-### Markdown
+And change to Bridged Adapter and select your interface
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+![alt text](https://raw.githubusercontent.com/angelo-ath/NextEPC-oaiRAN/gh-pages/screenshots/1.png)
+![alt text](https://raw.githubusercontent.com/angelo-ath/NextEPC-oaiRAN/gh-pages/screenshots/2.png)
+![alt text](https://raw.githubusercontent.com/angelo-ath/NextEPC-oaiRAN/gh-pages/screenshots/3.png)
 
-```markdown
-Syntax highlighted code block
+## Installation of NextEPC
 
-# Header 1
-## Header 2
-### Header 3
+For the installation procedure we follow the instructions from [nextepc.org](https://nextepc.org/installation/02-ubuntu/)
 
-- Bulleted
-- List
+- Install NextEPC
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```sh
+sudo apt-get update
+sudo apt-get -y install software-properties-common
+sudo add-apt-repository ppa:nextepc/nextepc
+sudo apt-get -y install nextepc
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+- Install Web User Interface
 
-### Jekyll Themes
+```sh
+sudo apt-get -y install curl
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+curl -sL https://nextepc.org/static/webui/install | sudo -E bash -
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/angelo-ath/NextEPC-oaiRAN/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+- Verify Installation & the tunnel interface creation
 
-### Support or Contact
+```sh
+clear ;sudo systemctl status nextepc-mmed ; sudo systemctl status nextepc-pgwd ; sudo systemctl status nextepc-sgwd ; sudo systemctl status nextepc-hssd ; sudo systemctl status nextepc-pcrfd
+ifconfig pgwtun
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## Configuration of NextEPC
+
+```sh
+cd /etc/nextepc
+sudo gedit mme.conf sgw.conf
+```
+
+### Configure MME
+
+```yaml
+mme:
+    freeDiameter: mme.conf
+    s1ap:
+      dev: enp0s3
+    gtpc:
+    gummei: 
+      plmn_id:
+        mcc: 208
+        mnc: 93
+      mme_gid: 2
+      mme_code: 1
+    tai:
+      plmn_id:
+        mcc: 208
+        mnc: 93
+      tac: 1
+    security:
+        integrity_order : [ EIA1, EIA2, EIA0 ]
+        ciphering_order : [ EEA0, EEA1, EEA2 ]
+    network_name:
+        full: NextEPC
+```
+
+### Configure SGW
+
+```yaml
+pgw:
+    freeDiameter: pgw.conf
+    gtpc:
+      addr:
+        - 127.0.0.3
+        - ::1
+    gtpu:
+      dev: enp0s3
+    ue_pool:
+      - addr: 45.45.0.1/16
+      - addr: cafe::1/64
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+      - 2001:4860:4860::8888
+      - 2001:4860:4860::8844
+```
+
+## Installation of oai-RAN
+
+Install oai-RAN on the physical machine, you can follow the instructions for the installation from the link below:
+
+(https://angelo-ath.github.io/oai/#enb---installation---configuration)
+
+## Configuration of oai-RAN
+
+
