@@ -179,3 +179,5 @@ On the physical machine
 ```sh
 clear ; sudo ~/openairinterface5g/cmake_targets/ran_build/build/lte-softmodem -O ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/enb.band7.tm1.50PRB.usrpb210.conf
 ```
+
+On the phone change APN to internet
