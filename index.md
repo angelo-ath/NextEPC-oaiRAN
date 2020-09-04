@@ -99,8 +99,18 @@ pgw:
 
 Install oai-RAN on the physical machine, you can follow the instructions for the installation from the link below:
 
-(https://angelo-ath.github.io/oai/#enb---installation---configuration)
+[oai-Ran-Installation-Configuration](https://angelo-ath.github.io/oai/#enb---installation---configuration)
 
 ## Configuration of oai-RAN
 
+```yaml
+tracking_area_code  =  1;
+plmn_list = ( { mcc = 208; mnc = 93; mnc_length = 2; } );
+downlink_frequency = 2625000000L;
+N_RB_DL = 25;
+tx_gain = 90;
+rx_gain = 115;
+mme_ip_address= ( { ipv4 = "192.168.30.17"; # IP Address of VM 
+```
 
+![alt text](https://raw.githubusercontent.com/angelo-ath/NextEPC-oaiRAN/gh-pages/screenshots/4.png)
