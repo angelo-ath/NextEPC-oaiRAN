@@ -127,3 +127,38 @@ parallel_config    = "PARALLEL_SINGLE_THREAD";
 ```
 
 ![alt text](https://raw.githubusercontent.com/angelo-ath/NextEPC-oaiRAN/gh-pages/screenshots/4.png)
+
+## Import user to database
+
+Go to [http://localhost:3000] and click add subscriber
+
+```yaml
+IMSI: 208930000000010 
+Subscriber Key (K): fec86ba6eb707ed08905757b1bb44b8f
+Operator Key(OPc/OP): 8e27b6af0e692e750f32667a3b14605d
+Access Point Name (APN): internet
+```
+Click save
+
+## Programming SIM
+
+For programming SIM card, please refer to think [link](https://angelo-ath.github.io/oai/#programming-sim-card)
+
+## Start NextEPC
+```sh
+sudo systemctl start nextepc-hssd ; sudo systemctl start nextepc-mmed ; sudo systemctl start nextepc-sgwd ; sudo systemctl start nextepc-pgwd ; sudo systemctl start nextepc-pcrfd
+```
+## Stop NextEPC 
+```sh
+sudo systemctl stop nextepc-mmed ; sudo systemctl stop nextepc-pgwd;sudo systemctl stop nextepc-sgwd;sudo systemctl stop nextepc-hssd;sudo systemctl stop nextepc-pcrfd
+```
+
+## Restart NectEPC 
+```sh
+sudo systemctl restart nextepc-mmed;sudo systemctl restart nextepc-pgwd;sudo systemctl restart nextepc-sgwd;sudo systemctl restart nextepc-hssd;sudo systemctl restart nextepc-pcrfd
+```
+
+## Status of NextEPC
+```sh
+clear ;sudo systemctl status nextepc-mmed ; sudo systemctl status nextepc-pgwd ; sudo systemctl status nextepc-sgwd ; sudo systemctl status nextepc-hssd ; sudo systemctl status nextepc-pcrfd
+```
