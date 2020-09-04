@@ -99,7 +99,7 @@ pgw:
 
 Install oai-RAN on the physical machine, you can follow the instructions for the installation from the link below:
 
-https://angelo-ath.github.io/oai/#enb---installation---configuration
+(https://angelo-ath.github.io/oai/#enb---installation---configuration)
 
 ## Configuration of oai-RAN
 
