@@ -1,8 +1,8 @@
-## Welcome to GitHub Pages
+## Installation of oai-RAN
 
-You can use the [editor on GitHub](https://github.com/angelo-ath/NextEPC-oaiRAN/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+For the installation part go to this link
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+https://angelo-ath.github.io/oai/#enb---installation---configuration
 
 ### Markdown
 
