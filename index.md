@@ -135,7 +135,7 @@ parallel_config    = "PARALLEL_SINGLE_THREAD";
 
 ## Import user to database
 
-Go to [http://localhost:3000] and click add subscriber
+Go to <http://localhost:3000> and click add subscriber
 
 ```yaml
 IMSI: 208930000000010 
