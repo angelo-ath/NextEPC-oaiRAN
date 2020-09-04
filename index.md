@@ -15,43 +15,92 @@ And change to Bridged Adapter and select your interface
 
 ## Installation of NextEPC
 
+For the installation procedure we follow the instructions from [nextepc.org](https://nextepc.org/installation/02-ubuntu/)
 
+- Install NextEPC
 
+```sh
+sudo apt-get update
+sudo apt-get -y install software-properties-common
+sudo add-apt-repository ppa:nextepc/nextepc
+sudo apt-get -y install nextepc
+```
+
+- Install Web User Interface
+
+```sh
+sudo apt-get -y install curl
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+curl -sL https://nextepc.org/static/webui/install | sudo -E bash -
+```
+
+- Verify Installation & the tunnel interface creation
+
+```sh
+clear ;sudo systemctl status nextepc-mmed ; sudo systemctl status nextepc-pgwd ; sudo systemctl status nextepc-sgwd ; sudo systemctl status nextepc-hssd ; sudo systemctl status nextepc-pcrfd
+ifconfig pgwtun
+```
+
+## Configuration of NextEPC
+
+```sh
+cd /etc/nextepc
+sudo gedit mme.conf sgw.conf
+```
+
+### Configure MME
+
+```sh
+mme:
+    freeDiameter: mme.conf
+    s1ap:
+      dev: enp0s3
+    gtpc:
+    gummei: 
+      plmn_id:
+        mcc: 208
+        mnc: 93
+      mme_gid: 2
+      mme_code: 1
+    tai:
+      plmn_id:
+        mcc: 208
+        mnc: 93
+      tac: 1
+    security:
+        integrity_order : [ EIA1, EIA2, EIA0 ]
+        ciphering_order : [ EEA0, EEA1, EEA2 ]
+    network_name:
+        full: NextEPC
+```
+
+### Configure SGW
+
+```sh
+pgw:
+    freeDiameter: pgw.conf
+    gtpc:
+      addr:
+        - 127.0.0.3
+        - ::1
+    gtpu:
+      dev: enp0s3
+    ue_pool:
+      - addr: 45.45.0.1/16
+      - addr: cafe::1/64
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+      - 2001:4860:4860::8888
+      - 2001:4860:4860::8844
+```
 
 ## Installation of oai-RAN
 
-For the installation part go to this link
+Install oai-RAN on the physical machine, you can follow the instructions for the installation from the link below:
 
 https://angelo-ath.github.io/oai/#enb---installation---configuration
 
-### Markdown
+## Configuration of oai-RAN
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/angelo-ath/NextEPC-oaiRAN/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
